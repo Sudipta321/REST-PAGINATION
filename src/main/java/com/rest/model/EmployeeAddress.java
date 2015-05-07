@@ -41,6 +41,11 @@ public class EmployeeAddress  {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	@Override
+	public String toString() {
+		return "EmployeeAddress [city=" + city + ", state=" + state + ", pin="
+				+ pin + ", country=" + country + "]";
+	}
 
 
 }

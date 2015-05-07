@@ -6,6 +6,18 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+    <properties>
+
+     <!-- Hibernate / JPA -->
+		<hibernate.version>4.3.7.Final</hibernate.version>
+
+		<!--  mysql -->
+		<mysql.version>5.1.34</mysql.version>
+
+		<!-- Test -->
+		<junit.version>4.11</junit.version>
+
+    </properties>
 	<dependencies>
 		<!-- <dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -22,7 +34,7 @@
 			<artifactId>jersey-client</artifactId>
 			<version>1.14</version>
 		</dependency> -->
-		
+
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
@@ -65,16 +77,70 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.1</version>
 		</dependency>
+        <!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.3.0.Final</version>
+	</dependency>
 
+        <!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>20030825.183949</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		 <!--apache common-login -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>20030825.184428</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<testSourceDirectory>src/main/test</testSourceDirectory>
+		<!-- Specify the file that contains the value to replace the placeholders -->
+	    <filters>
+	        <filter>src/main/resources/JDBC.properties</filter>
+	    </filters>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
+				<includes>
+	                <include>hibernate.cfg.xml</include>
+	            </includes>
 			</resource>
 			<resource>
 				<directory>src/main/webapp</directory>
